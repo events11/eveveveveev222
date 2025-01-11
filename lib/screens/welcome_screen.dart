@@ -5,7 +5,7 @@ import 'signin_screen.dart';
 import 'signup_screen.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_application_1/generated/l10n.dart';
-import 'filtar_screen.dart';
+
 
 class WelcomeScreen extends StatefulWidget {
   static const String screenRoute = 'welcome_screen';

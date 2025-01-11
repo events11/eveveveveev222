@@ -19,13 +19,14 @@ class _LanguageScreenState extends State<LanguageScreen> {
       _currentLocale = _currentLocale.languageCode == 'en'
           ? const Locale('ar')
           : const Locale('en');
-      S.load(_currentLocale); // تحميل ملف الترجمة المناسب
+      S.load(_currentLocale); 
     });
   }
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       locale: _currentLocale,
       localizationsDelegates: const [
         S.delegate,
@@ -43,7 +44,7 @@ class _LanguageScreenState extends State<LanguageScreen> {
               
               const SizedBox(height: 20),
               ElevatedButton(
-                onPressed: _changeLanguage, // استدعاء وظيفة تغيير اللغة
+                onPressed: _changeLanguage, 
                 child: Text(
                   S.of(context).changeLanguageButton, // زر مترجم
                 ),

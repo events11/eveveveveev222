@@ -11,7 +11,7 @@ import 'pagewa_screen.dart';
 import 'package:intl/intl.dart';
 
 class CreatePostPage extends StatefulWidget {
-  static const String screenRoute = 'post_screen'; // تعريف واحد للثابت
+  static const String screenRoute = 'post_screen'; 
 
   @override
   _CreatePostPageState createState() => _CreatePostPageState();
@@ -23,35 +23,36 @@ class _CreatePostPageState extends State<CreatePostPage> {
   final TextEditingController _filterByCategory = TextEditingController();
   final TextEditingController _currentFilter = TextEditingController();
   final TextEditingController _ruleController = TextEditingController();
-  File? _pickedFile; // لتخزين الصورة أو الفيديو
-  DateTime? _selectedDateTime; // لتخزين التاريخ والوقت المختار
-  // دالة لاختيار التاريخ والوقت
+  final TextEditingController _titleController = TextEditingController();
+  File? _pickedFile; 
+  DateTime? _selectedDateTime; 
+  
   Future<void> _selectDateTime() async {
-    // اختيار التاريخ
+    
     DateTime? selectedDate = await showDatePicker(
       context: context,
       initialDate: DateTime.now(),
       firstDate: DateTime(2020),
       lastDate: DateTime(2100),
-      locale: const Locale('en', 'US'), // ضبط اللغة إلى الإنجليزية
+      locale: const Locale('en', 'US'),
     );
 
     if (selectedDate != null) {
-      // اختيار الوقت
+      
       TimeOfDay? selectedTime = await showTimePicker(
         context: context,
         initialTime: TimeOfDay.fromDateTime(DateTime.now()),
         builder: (BuildContext context, Widget? child) {
           return Localizations.override(
             context: context,
-            locale: const Locale('en', 'US'), // ضبط اللغة إلى الإنجليزية
+            locale: const Locale('en', 'US'), 
             child: child,
           );
         },
       );
 
       if (selectedTime != null) {
-        // دمج التاريخ والوقت
+        
         setState(() {
           _selectedDateTime = DateTime(
             selectedDate.year,
@@ -78,12 +79,24 @@ class _CreatePostPageState extends State<CreatePostPage> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              // حقل النص
+
               TextField(
-                controller: _postController,
+                controller: _titleController,
                 maxLines: null, // السماح بخطوط متعددة
                 decoration: InputDecoration(
-                  hintText: (S.of(context).Text),
+                  hintText: (S.of(context).Title),//////////////////////////////////////
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(30.0),
+                  ),
+                ),
+              ),
+const SizedBox(height: 16.0),
+              
+              TextField(
+                controller: _postController,
+                maxLines: null, 
+                decoration: InputDecoration(
+                  hintText: (S.of(context).Text),//////////////////////////////////////
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(30.0),
                   ),
@@ -91,22 +104,20 @@ class _CreatePostPageState extends State<CreatePostPage> {
               ),
 
               const SizedBox(height: 16.0),
-              // رابط الموقع
+              
               TextField(
                 controller: _locationController,
                 decoration: InputDecoration(
-                  hintText: (S.of(context).Addalocation), //
+                  hintText: (S.of(context).Addalocation), //////////////////////////////////////////
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(30.0),
                   ),
                   prefixIcon: Icon(Icons.location_on),
                 ),
               ),
-             
-              
-       
+
               const SizedBox(height: 16.0),
-              // زر تحديد الوقت
+              
               GestureDetector(
                 onTap: _selectDateTime,
                 child: Container(
@@ -119,7 +130,7 @@ class _CreatePostPageState extends State<CreatePostPage> {
                   ),
                   child: Text(
                     _selectedDateTime == null
-                        ? (S.of(context).Timeanddate)
+                        ? (S.of(context).Timeanddate)///////////////////////////////
                         : ': ${_selectedDateTime!.toLocal().toString().split(' ')[0]} ${_selectedDateTime!.toLocal().toString().split(' ')[1].substring(0, 5)}',
                     style: TextStyle(
                         color: const Color.fromARGB(255, 1, 3, 4),
@@ -129,129 +140,102 @@ class _CreatePostPageState extends State<CreatePostPage> {
               ),
               const SizedBox(height: 16.0),
               //
-          TextField(
-  controller: _ruleController,
-  maxLines: null, // السماح بخطوط متعددة
-  decoration: InputDecoration(
-    hintText: "Set Rules and Ticket Price (Optional)",
-    border: OutlineInputBorder(
-      borderRadius: BorderRadius.circular(30.0),
-    ),
-  // النص سيكون باللون الأصفر
-  ),
-),
+              TextField(
+                controller: _ruleController,
+                maxLines: null, 
+                decoration: InputDecoration(
+                  hintText: (S.of(context).SetRulesandTicketPrice),///////////////////////////////
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(30.0),
+                  ),
+                
+                ),
+              ),
 
-
-
- const SizedBox(height: 16.0),
+              const SizedBox(height: 16.0),
 
               ElevatedButton(
-  style: ElevatedButton.styleFrom(
-    shape: RoundedRectangleBorder(
-      borderRadius: BorderRadius.circular(30.0),
-    ),
-    padding: EdgeInsets.symmetric(horizontal: 20, vertical: 15),
-  ),
-  onPressed: () async {
-    // عرض القائمة المنبثقة
-    final selectedOption = await showMenu<int>(
-      context: context,
-      position: RelativeRect.fromLTRB(0, 100, 0, 0), // ضبط الموضع حسب الحاجة
-      items: [
-        PopupMenuItem<int>(
-          value: 1, // قيمة الخيار الأول
-          child: Row(
-            children: [
-              Icon(Icons.person), // أيقونة بجانب النص
-              SizedBox(width: 10), // مسافة بين الأيقونة والنص
-              Text('Personal Events'), // النص
-            ],
-          ),
-        ),
-        PopupMenuItem<int>(
-          value: 2, // قيمة الخيار الثاني
-          child: Row(
-            children: [
-              Icon(Icons.people), // أيقونة بجانب النص
-              SizedBox(width: 10),
-              Text('Public Events'), // النص
-            ],
-          ),
-        ),
-        PopupMenuItem<int>(
-          value: 3, // قيمة الخيار الثالث
-          child: Row(
-            children: [
-              Icon(Icons.business), // أيقونة بجانب النص
-              SizedBox(width: 10),
-              Text('Organizational Events'), // النص
-            ],
-          ),
-        ),
-        PopupMenuItem<int>(
-          value: 4, // قيمة الخيار الرابع
-          child: Row(
-            children: [
-              Icon(Icons.beach_access), // أيقونة بجانب النص
-              SizedBox(width: 10),
-              Text('Recreational Events'), // النص
-            ],
-          ),
-        ),
-      ],
-    );
+                style: ElevatedButton.styleFrom(
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(30.0),
+                  ),
+                  padding: EdgeInsets.symmetric(horizontal: 20, vertical: 15),
+                ),
+                onPressed: () async {
+              
+                  final selectedOption = await showMenu<int>(
+                    context: context,
+                    position: RelativeRect.fromLTRB(
+                        0, 100, 0, 0), 
+                    items: [
+                      PopupMenuItem<int>(
+                        value: 1, // قيمة الخيار الأول
+                        child: Row(
+                          children: [
+                            Icon(Icons.person), // أيقونة بجانب النص
+                            SizedBox(width: 10), 
+                            Text(S.of(context).PersonalEvents),////////////////////// // 
+                          ],
+                        ),
+                      ),
+                      PopupMenuItem<int>(
+                        value: 2, 
+                        child: Row(
+                          children: [
+                            Icon(Icons.people), 
+                            SizedBox(width: 10),
+                             Text(S.of(context).PublicEvents),//////////////////////
+                          ],
+                        ),
+                      ),
+                      PopupMenuItem<int>(
+                        value: 3, 
+                        child: Row(
+                          children: [
+                            Icon(Icons.business), 
+                            SizedBox(width: 10),
+                           Text(S.of(context).OrganizationalEvents),//////////////////////
+                          ],
+                        ),
+                      ),
+                      PopupMenuItem<int>(
+                        value: 4, 
+                        child: Row(
+                          children: [
+                            Icon(Icons.beach_access), 
+                            SizedBox(width: 10),
+                             Text(S.of(context).RecreationalEvents),//////////////////////
+                          ],
+                        ),
+                      ),
+                    ],
+                  );
 
-    // إذا تم اختيار خيار
-     if (selectedOption != null) {
-      setState(() {
-        // إرسال القيمة المختارة إلى _currentFilter
-        _currentFilter.text = '$selectedOption';  // يتم عرض الرقم مباشرة داخل TextField
-      });
-    }
-  },
-  child: Row(
-    mainAxisSize: MainAxisSize.min,
-    children: [
-      Icon(Icons.category, color: Colors.white),
-      SizedBox(width: 10),
-      Text(
-        _currentFilter.text.isEmpty ? 'Select Event Type' : _currentFilter.text,
-        style: TextStyle(fontSize: 16),
-      ),
-    ],
-  ),
-),
-
-             
-
-              // إضافة صورة/فيديو
-              /*if (_pickedFile != null)
-                Column(
+                 
+                  if (selectedOption != null) {
+                    setState(() {
+                      
+                      _currentFilter.text =
+                          '$selectedOption';
+                    });
+                  }
+                },
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
                   children: [
-                    const SizedBox(height: 50),
-                    _pickedFile!.path.endsWith('.mp4') // تحقق إذا كان فيديو
-                        ? Icon(Icons.videocam, size: 200, color: const Color.fromARGB(255, 230, 225, 225))
-                        : Image.file(
-                            File(_pickedFile!.path),
-                            width: double.infinity,
-                            height: 200,
-                            fit: BoxFit.cover,
-                          ),
-                  ],
-                ),*/
-              if (_pickedFile != null)
-                Column(
-                  children: [
-                    _pickedFile!.path.endsWith('.mp4')
-                        ? Text('فيديو مرفق')
-                        : Image.file(
-                            File(_pickedFile!.path),
-                            width: double.infinity,
-                            height: 200,
-                            fit: BoxFit.cover,
-                          ),
+                    Icon(Icons.category, color: Colors.white),
+                    SizedBox(width: 10),
+                    Text(
+                      _currentFilter.text.isEmpty
+                          ? (S.of(context).SelectEventType)//////////////////////
+                          : _currentFilter.text,
+                      style: TextStyle(fontSize: 16),
+                    ),
                   ],
                 ),
+              ),
+
+              
 
               const SizedBox(height: 10.0),
               ElevatedButton.icon(
@@ -265,39 +249,7 @@ class _CreatePostPageState extends State<CreatePostPage> {
                     child: Text(S.of(context).Sharethepost)),
               ),
 
-              /*  ElevatedButton.icon(
-                
-                onPressed: () => _pickMedia(context),
-                icon: Icon(
-                  Icons.photo,
-                  color: const Color.fromARGB(255, 18, 189, 3),),
-                  
-                label: Text(
-    'إضافة صورة/فيديو',
-    style: TextStyle(
-      color: const Color.fromARGB(255, 32, 30, 30), // لون الخط
-      fontSize: 16, // يمكنك تعديل الحجم إذا أردت
-      fontWeight: FontWeight.bold, // تغيير وزن الخط (اختياري)
-    ),
-  ),
-              ),
-              const SizedBox(height: 16.0),
-
-              // زر النشر
-              Center(
-                
-                child: ElevatedButton(
-                  
-                  onPressed: _createPost,
-                  child: Text('post',
-                  style: TextStyle(
-      color: const Color.fromARGB(255, 17, 47, 195), // لون الخط
-      fontSize: 16, // يمكنك تعديل الحجم إذا أردت
-      fontWeight: FontWeight.bold, // تغيير وزن الخط (اختياري)
-    ),),
-
-                ),
-              ),*/
+              
             ],
           ),
         ),
@@ -305,30 +257,31 @@ class _CreatePostPageState extends State<CreatePostPage> {
     );
   }
 
-// دالة لتحميل الملف إلى Firebase Storage
+// داFirebase Storage
   Future<String?> uploadFileToStorage(File file) async {
     try {
-      // Create a reference to Firebase Storage
-      // Generate a unique file name based on the current timestamp
+      
+      String fileName = '${DateTime.now().millisecondsSinceEpoch}';
+      if (file.path.endsWith('.mp4')) {
+        fileName += '.mp4'; 
+      } else {
+       
+        fileName += '.jpg';
+      }
 
-      // Create a reference for the file within the 'images' directory
- 
-      // Convert XFile to File and upload it
-      final storageReference = FirebaseStorage.instance.ref()
-      .child('uploads/images/${DateTime.now().millisecondsSinceEpoch}.jpg');
-      final uploadTask = storageReference.putFile(File(file.path));
-      // Wait for the file upload to complete
+      final storageReference =
+          FirebaseStorage.instance.ref().child('uploads/media/$fileName');
+      final uploadTask = storageReference.putFile(file);
       final snapshot = await uploadTask;
-      // Retrieve the download URL of the uploaded file
       final downloadUrl = await snapshot.ref.getDownloadURL();
       return downloadUrl;
     } catch (e) {
       print('خطأ في تحميل الملف إلى Firebase Storage: $e');
-      return "https://firebasestorage.googleapis.com/v0/b/event999-83c8c.firebasestorage.app/o/7777.jpg?alt=media&token=1bd71454-a281-4561-a13a-1fe047ff8838";
+      return null; // 
     }
   }
 
-  // دالة اختيار الوسائط (صورة أو فيديو)
+  
   Future<void> _pickMedia(BuildContext context) async {
     final picker = ImagePicker();
     final pickedFile = await showModalBottomSheet<XFile?>(
@@ -357,9 +310,19 @@ class _CreatePostPageState extends State<CreatePostPage> {
         );
       },
     );
-    setState(() {
-      _pickedFile = File(pickedFile!.path);
-    });
+
+    if (pickedFile != null) {
+      setState(() {
+        
+        if (pickedFile.path.endsWith('.mp4')) {
+    
+          _pickedFile = File(pickedFile.path);
+        } else {
+         
+          _pickedFile = File(pickedFile.path);
+        }
+      });
+    }
   }
 
   void addPost(
@@ -367,32 +330,39 @@ class _CreatePostPageState extends State<CreatePostPage> {
     String userName,
     String content, {
     String? ImageUrl,
+    String? VideoUrl,
     String? location,
     String? rule,
     DateTime? timestamp,
+    String? title,
+    required int del,
     //String? category,
     required int category,
   }) {
-    // إنشاء خريطة تحتوي على القيم الأساسية فقط
+    
     final postData = {
-      //'userId': userId,
-      //'userName': userName,
+      'userId': userId,
+      'userName': userName,
       'content': content,
-      'ImageUrl': ImageUrl ?? '', // إذا لم يتم اختيار صورة
-      'location': location ?? '', // إذا لم يتم إدخال موقع
+      'ImageUrl': ImageUrl ?? '', 
+      'VideoUrl': VideoUrl ?? '',
+      'location': location ?? '', 
       'category': category,
-      'rule':rule??'',
+      'rule': rule ?? '',
       'times': FieldValue.serverTimestamp(),
       'timestamp': timestamp ?? '',
-      // وقت النشر
+      'del': 1,
+      'isCurrentUser': userId ==
+          FirebaseAuth.instance.currentUser!.uid, 
+      'title': title ??'',
+      
     };
 
-    // إضافة الحقل timestamp إذا كان محددًا
     if (timestamp != null) {
       postData['timestamp'] = timestamp;
     }
 
-    // إرسال البيانات إلى قاعدة البيانات
+    
     FirebaseFirestore.instance.collection('users').add(postData).then((value) {
       print('تمت إضافة المنشور بنجاح.');
     }).catchError((error) {
@@ -400,69 +370,66 @@ class _CreatePostPageState extends State<CreatePostPage> {
     });
   }
 
-// تعديل دالة _createPost
+
   void _createPost() async {
-    final postText = _postController.text.trim();
-    final location = _locationController.text.trim();
-    final rule = _ruleController.text.trim();
-    final category = int.tryParse(_currentFilter.text.trim()) ?? 0; // ت
+    User? user = FirebaseAuth.instance.currentUser;
 
-    // التحقق من الحقول الفارغة
-    if (postText.isEmpty && _pickedFile == null && location.isEmpty) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('يرجى إدخال نص أو إضافة ملف أو موقع.')),
-      );
-      return;
-    }
-
-    // إعداد الوقت إذا تم اختياره
-    DateTime? timestamp = _selectedDateTime;
-    // تحميل الملف إلى Firebase Storage إذا كان موجودًا
-    String? images;
-    if (_pickedFile != null) {
-      images = await uploadFileToStorage(_pickedFile!);
-      if (images == null) {
+    if (user != null) {
+      final postText = _postController.text.trim();
+      final location = _locationController.text.trim();
+      final rule = _ruleController.text.trim();
+      final category = int.tryParse(_currentFilter.text.trim()) ?? 0;
+ final title= _titleController.text.trim();
+      if (postText.isEmpty && _pickedFile == null && location.isEmpty) {
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('فشل تحميل الملف.')),
+          SnackBar(content: Text(S.of(context).Pleaseenter),//////////////////////
+          ),
         );
         return;
       }
-    }
-    // استدعاء الدالة addPost
-    addPost(
-      FirebaseAuth.instance.currentUser!.uid, // ID المستخدم
-      FirebaseAuth.instance.currentUser!.displayName ?? "مجهول", // اسم المستخدم
-      postText, // النص المدخل
-      ImageUrl:images, // رابط الملف المختار (اختياري)
-      location: location, // الموقع المدخل (اختياري)
-      category: category, // إضافة التصنيف
-      timestamp: timestamp, 
-      rule:rule,// التاريخ المحدد (اختياري)
-    );
 
-    // طباعة البيانات في وحدة التحكم (لأغراض تصحيح الأخطاء)
-    print('نص المنشور: $postText');
-    print('رابط الموقع: $location');
-    if (_pickedFile != null) {
-      print('تم اختيار ملف: ${_pickedFile!.path}');
-    }
-    if (timestamp != null) {
-      print('التاريخ المختار: $timestamp');
-    }
+      DateTime? timestamp = _selectedDateTime;
+      String? imageUrl;
+      String? videoUrl;
 
-    // إعادة تعيين الحقول بعد الإرسال
-    _postController.clear();
-    _locationController.clear();
-    _filterByCategory.clear();
-    _ruleController.clear();
-    setState(() {
-      _pickedFile = null;
-      _selectedDateTime = null; // إعادة تعيين الوقت
-      _currentFilter.clear(); // إعادة تعيين التصنيف
-    });
+      if (_pickedFile != null) {
+        imageUrl = await uploadFileToStorage(_pickedFile!);
+        if (imageUrl == null) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(content: Text('فشل تحميل الملف.')),
+          );
+          return;
+        }
+      }
 
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(content: Text('تم نشر المنشور بنجاح!')),
-    );
+      addPost(
+        FirebaseAuth.instance.currentUser!.uid,
+        FirebaseAuth.instance.currentUser!.displayName ?? "مجهول",
+        postText,
+        ImageUrl: imageUrl,
+        location: location,
+        category: category,
+        timestamp: timestamp,
+        rule: rule,
+        del: 1,
+        title: title,
+      );
+
+      
+      _postController.clear();
+      _locationController.clear();
+      _ruleController.clear();
+      _titleController.clear();
+      setState(() {
+        _pickedFile = null;
+        _selectedDateTime = null;
+        _currentFilter.clear();
+      });
+
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text(S.of(context).Theposthasbeenpublishedsuccessfully),//////////////////////
+        ),
+      );
+    }
   }
 }

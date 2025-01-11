@@ -190,10 +190,10 @@ class S {
     );
   }
 
-  /// `time and date for the event (optional)`
+  /// `Time and Date for the event (optional)`
   String get Timeanddate {
     return Intl.message(
-      'time and date for the event (optional)',
+      'Time and Date for the event (optional)',
       name: 'Timeanddate',
       desc: '',
       args: [],
@@ -235,6 +235,306 @@ class S {
     return Intl.message(
       'Video selection',
       name: 'Videoselection',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Message Box`
+  String get messagebox {
+    return Intl.message(
+      'Message Box',
+      name: 'messagebox',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Members List`
+  String get MembersList {
+    return Intl.message(
+      'Members List',
+      name: 'MembersList',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Add a member`
+  String get Addamember {
+    return Intl.message(
+      'Add a member',
+      name: 'Addamember',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Save edits`
+  String get Saveedits {
+    return Intl.message(
+      'Save edits',
+      name: 'Saveedits',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No CV`
+  String get NoCV {
+    return Intl.message(
+      'No CV',
+      name: 'NoCV',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Edit CV`
+  String get EditCV {
+    return Intl.message(
+      'Edit CV',
+      name: 'EditCV',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Name not available`
+  String get Namenotavailable {
+    return Intl.message(
+      'Name not available',
+      name: 'Namenotavailable',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Your Posts`
+  String get YourPosts {
+    return Intl.message(
+      'Your Posts',
+      name: 'YourPosts',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No posts.`
+  String get Noposts {
+    return Intl.message(
+      'No posts.',
+      name: 'Noposts',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Unavailable content`
+  String get Unavailablecontent {
+    return Intl.message(
+      'Unavailable content',
+      name: 'Unavailablecontent',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Modify name`
+  String get Modifyname {
+    return Intl.message(
+      'Modify name',
+      name: 'Modifyname',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Member has been added successfully`
+  String get Memberhasbeenaddedsuccessfully {
+    return Intl.message(
+      'Member has been added successfully',
+      name: 'Memberhasbeenaddedsuccessfully',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `The post was deleted successfully`
+  String get Thepostwasdeletedsuccessfully {
+    return Intl.message(
+      'The post was deleted successfully',
+      name: 'Thepostwasdeletedsuccessfully',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Send Invitation`
+  String get SendInvitation {
+    return Intl.message(
+      'Send Invitation',
+      name: 'SendInvitation',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Send to All `
+  String get SendtoAll {
+    return Intl.message(
+      'Send to All ',
+      name: 'SendtoAll',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Send`
+  String get Send {
+    return Intl.message(
+      'Send',
+      name: 'Send',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Write your message here...`
+  String get Writeyourmessagehere {
+    return Intl.message(
+      'Write your message here...',
+      name: 'Writeyourmessagehere',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Select Post`
+  String get SelectPost {
+    return Intl.message(
+      'Select Post',
+      name: 'SelectPost',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Select Receiver`
+  String get SelectReceiver {
+    return Intl.message(
+      'Select Receiver',
+      name: 'SelectReceiver',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Personal Events`
+  String get PersonalEvents {
+    return Intl.message(
+      'Personal Events',
+      name: 'PersonalEvents',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Public Events`
+  String get PublicEvents {
+    return Intl.message(
+      'Public Events',
+      name: 'PublicEvents',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Organizational Events`
+  String get OrganizationalEvents {
+    return Intl.message(
+      'Organizational Events',
+      name: 'OrganizationalEvents',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Recreational Events`
+  String get RecreationalEvents {
+    return Intl.message(
+      'Recreational Events',
+      name: 'RecreationalEvents',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `All Events`
+  String get AllEvents {
+    return Intl.message(
+      'All Events',
+      name: 'AllEvents',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `? Title`
+  String get Title {
+    return Intl.message(
+      '? Title',
+      name: 'Title',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Set Rules and Ticket Price (Optional)`
+  String get SetRulesandTicketPrice {
+    return Intl.message(
+      'Set Rules and Ticket Price (Optional)',
+      name: 'SetRulesandTicketPrice',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Select Event Type`
+  String get SelectEventType {
+    return Intl.message(
+      'Select Event Type',
+      name: 'SelectEventType',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `The post has been published successfully!`
+  String get Theposthasbeenpublishedsuccessfully {
+    return Intl.message(
+      'The post has been published successfully!',
+      name: 'Theposthasbeenpublishedsuccessfully',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please enter text or add a file or location  .`
+  String get Pleaseenter {
+    return Intl.message(
+      'Please enter text or add a file or location  .',
+      name: 'Pleaseenter',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Post Details`
+  String get PostDetails {
+    return Intl.message(
+      'Post Details',
+      name: 'PostDetails',
       desc: '',
       args: [],
     );

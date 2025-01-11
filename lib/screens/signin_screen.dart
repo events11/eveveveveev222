@@ -1,10 +1,8 @@
-// ignore_for_file: avoid_print
-
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/screens/signup_screen.dart';
 import 'welcome_screen.dart';
 
-// ignore: unused_import
+
 import 'pagewa_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
@@ -97,7 +95,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                   ),
                   borderRadius: BorderRadius.all(
                     Radius.circular(10),
-                  ), //هون بنعمل حلق لكلمة ادخل اليميسل
+                  ), 
                 ),
                 focusedBorder: OutlineInputBorder(
                   borderSide: BorderSide(
@@ -106,7 +104,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                   ),
                   borderRadius: BorderRadius.all(
                     Radius.circular(10),
-                  ), //هون لما نظغط على ادخال الايميل بصير اغمق والحلق بصير لون ازرق
+                  ), 
                 ),
               ),
             ),
@@ -133,7 +131,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                   ),
                   borderRadius: BorderRadius.all(
                     Radius.circular(10),
-                  ), //هون بنعمل حلق لكلمة ادخل اليميسل
+                  ), 
                 ),
                 focusedBorder: OutlineInputBorder(
                   borderSide: BorderSide(
@@ -142,7 +140,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                   ),
                   borderRadius: BorderRadius.all(
                     Radius.circular(10),
-                  ), //هون لما نظغط على ادخال الايميل بصير اغمق والحلق بصير لون ازرق
+                  ),
                 ),
               ),
             ),
